@@ -57,12 +57,16 @@ class App extends Component {
     this.setState({ showModal: true, largeImageURL, tags });
   };
 
-  onClosenModal = () => {
+  onCloseModal = () => {
     this.setState({ showModal: false, largeImageURL: '', tags: '' });
   };
 
   onLoadMore = () => {
     this.setState(prevState => ({ page: prevState.page + 1 }));
+    // window.scroll({
+    //   bottom: 100,
+    //   behavior: 'smooth',
+    // });
   };
 
   render() {
@@ -86,7 +90,7 @@ class App extends Component {
           largeImageURL={largeImageURL}
           tags={tags}
           isOpenModal={showModal}
-          isCloseModal={this.onClosenModal}
+          isCloseModal={this.onCloseModal}
         />
       </>
     );

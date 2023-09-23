@@ -1,4 +1,5 @@
 import React from 'react';
+import css from './ImageGalleryItem.module.css';
 
 const ImageGalleryItem = ({
   largeImageURL,
@@ -8,10 +9,10 @@ const ImageGalleryItem = ({
 }) => {
   return (
     <li
-      className="gallery-item"
+      className={css.galleryItem}
       onClick={() => onOpenModal(largeImageURL, tags)}
     >
-      <img src={webformatURL} alt={tags} />
+      <img src={webformatURL} alt={tags} className={css.image} />
     </li>
   );
 };

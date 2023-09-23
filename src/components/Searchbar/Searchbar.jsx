@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import css from './Searchbar.module.css';
+import { CiSearch } from 'react-icons/ci';
 
 class Searchbar extends Component {
   state = {
@@ -25,7 +26,7 @@ class Searchbar extends Component {
       <header className={css.searchbar}>
         <form className={css.form} onSubmit={this.handleSubmit}>
           <button type="submit" className={css.formBtn}>
-            <span className={css.formBtnLabel}>Search</span>
+            <CiSearch className={css.formIcon} />
           </button>
 
           <input
