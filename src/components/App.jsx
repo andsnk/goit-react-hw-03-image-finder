@@ -5,6 +5,14 @@ import Loader from './Loader/Loader';
 import ImageGallery from './ImageGallery/ImageGallery';
 import MyModal from './Modal/MyModal';
 import Button from './Button/Button';
+import Notiflix from 'notiflix';
+import ErrorMessage from './ErrorMessage/ErrorMessage';
+Notiflix.Notify.init({
+  width: '280px',
+  position: 'top',
+  distance: '60px',
+  opacity: 1,
+});
 
 class App extends Component {
   state = {
@@ -31,12 +39,15 @@ class App extends Component {
     try {
       const { hits, totalHits } = await getPhoto(query, page);
       if (hits.length === 0) {
-        return alert('Not find');
+        return Notiflix.Notify.failure(
+          'Sorry, there are no images matching your search query. Please try again.'
+        );
       }
       this.setState(prevState => ({
         images: [...prevState.images, ...hits],
         total: totalHits,
       }));
+      Notiflix.Notify.success(`Hooray! We found ${totalHits} images`);
     } catch (error) {
       this.setState({ error: error.message });
     } finally {
@@ -46,7 +57,7 @@ class App extends Component {
 
   onHandleSubmit = value => {
     if (value === this.state.query) {
-      return alert('sorry, this value is entered');
+      return Notiflix.Notify.info('You have already entered this value');
     }
     this.setState({ query: value, page: 1, images: [] });
   };
@@ -78,7 +89,7 @@ class App extends Component {
       <>
         <Searchbar onSubmit={this.onHandleSubmit} />
         {isLoading && <Loader />}
-        {error && <p>Message</p>}
+        {error && <ErrorMessage />}
         {images.length > 0 && (
           <ImageGallery images={images} onOpenModal={this.onOpenModal} />
         )}

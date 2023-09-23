@@ -1,7 +1,9 @@
 .loadMoreBtnCont {
   display: flex;
   justify-content: center;
-  margin: 20px auto;
+  /* margin: 20px auto; */
+  margin-bottom: 20px;
+  /* margin: auto; */
 }
 
 .loadMoreBtn {

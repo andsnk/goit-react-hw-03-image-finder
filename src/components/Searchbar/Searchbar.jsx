@@ -1,6 +1,13 @@
 import { Component } from 'react';
 import css from './Searchbar.module.css';
 import { CiSearch } from 'react-icons/ci';
+import Notiflix from 'notiflix';
+Notiflix.Notify.init({
+  width: '280px',
+  position: 'top',
+  distance: '60px',
+  opacity: 1,
+});
 
 class Searchbar extends Component {
   state = {
@@ -15,7 +22,7 @@ class Searchbar extends Component {
     e.preventDefault();
     const { query } = this.state;
     if (query.trim() === '') {
-      return alert('Not empty');
+      return Notiflix.Notify.warning('Enter the text in the search field');
     }
     this.props.onSubmit(query);
     this.setState({ query: '' });
