@@ -1,8 +1,8 @@
 import { Blocks } from 'react-loader-spinner';
-import s from './Loader.module.css'
+import css from './Loader.module.css';
 
 const Loader = () => (
-  <div className={s.overlay}>
+  <div className={css.overlay}>
     <Blocks
       visible={true}
       height="120"
