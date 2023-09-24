@@ -7,6 +7,7 @@ import MyModal from './Modal/MyModal';
 import Button from './Button/Button';
 import Notiflix from 'notiflix';
 import ErrorMessage from './ErrorMessage/ErrorMessage';
+import StartPage from './StartPage/StartPage';
 Notiflix.Notify.init({
   width: '280px',
   position: 'top',
@@ -81,13 +82,23 @@ class App extends Component {
   };
 
   render() {
-    const { images, isLoading, error, total, largeImageURL, tags, showModal } =
-      this.state;
+    const {
+      images,
+      isLoading,
+      error,
+      total,
+      largeImageURL,
+      tags,
+      showModal,
+      query,
+    } = this.state;
     const allPage = total / images.length;
     // loadMore: this.state.page < Math.ceil(totalHits / 12 )
     return (
       <>
         <Searchbar onSubmit={this.onHandleSubmit} />
+        {query === '' && <StartPage />}
+
         {isLoading && <Loader />}
         {error && <ErrorMessage />}
         {images.length > 0 && (
