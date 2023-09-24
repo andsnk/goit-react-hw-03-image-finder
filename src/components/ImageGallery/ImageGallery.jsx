@@ -3,7 +3,6 @@ import React from 'react';
 import css from './ImageGallery.module.css';
 
 const ImageGallery = ({ images, onOpenModal }) => {
-  console.log(images);
   return (
     <ul className={css.gallery}>
       {images.map(({ id, largeImageURL, webformatURL, tags }) => (

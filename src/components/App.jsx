@@ -38,6 +38,7 @@ class App extends Component {
     this.setState({ isLoading: true });
     try {
       const { hits, totalHits } = await getPhoto(query, page);
+
       if (hits.length === 0) {
         return Notiflix.Notify.failure(
           'Sorry, there are no images matching your search query. Please try again.'
@@ -46,8 +47,11 @@ class App extends Component {
       this.setState(prevState => ({
         images: [...prevState.images, ...hits],
         total: totalHits,
+        hasLoadedImages: true,
       }));
-      Notiflix.Notify.success(`Hooray! We found ${totalHits} images`);
+      if (page === 1) {
+        Notiflix.Notify.success(`Hooray! We found ${totalHits} images`);
+      }
     } catch (error) {
       this.setState({ error: error.message });
     } finally {
@@ -74,10 +78,6 @@ class App extends Component {
 
   onLoadMore = () => {
     this.setState(prevState => ({ page: prevState.page + 1 }));
-    // window.scroll({
-    //   bottom: 100,
-    //   behavior: 'smooth',
-    // });
   };
 
   render() {
