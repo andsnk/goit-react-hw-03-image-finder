@@ -48,7 +48,6 @@ class App extends Component {
       this.setState(prevState => ({
         images: [...prevState.images, ...hits],
         total: totalHits,
-        hasLoadedImages: true,
       }));
       if (page === 1) {
         Notiflix.Notify.success(`Hooray! We found ${totalHits} images`);
