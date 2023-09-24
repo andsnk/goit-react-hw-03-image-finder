@@ -39,7 +39,7 @@ class App extends Component {
     this.setState({ isLoading: true });
     try {
       const { hits, totalHits } = await getPhoto(query, page);
-
+      this.setState({ error: null });
       if (hits.length === 0) {
         return Notiflix.Notify.failure(
           'Sorry, there are no images matching your search query. Please try again.'
